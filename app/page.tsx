@@ -95,6 +95,22 @@ export default function Home() {
                 </div>
               ))}
             </div>
+
+            <div className="mt-20 max-w-2xl">
+              <h3 className="text-3xl font-bold sm:text-4xl">{site.tech.heading}</h3>
+              <p className="mt-4 text-lg text-muted">{site.tech.intro}</p>
+            </div>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {site.tech.tools.map((t) => (
+                <article key={t.name} className="border-gradient flex flex-col rounded-3xl p-7">
+                  <p className="text-gradient text-sm font-semibold uppercase tracking-[0.2em]">{t.name}</p>
+                  <h4 className="mt-3 font-[family-name:var(--font-heading)] text-2xl font-bold uppercase leading-tight">
+                    {t.title}
+                  </h4>
+                  <p className="mt-3 text-muted">{t.body}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 

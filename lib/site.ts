@@ -78,6 +78,28 @@ export const site = {
     },
   ],
 
+  tech: {
+    heading: "The tech behind every session",
+    intro: "Every session is filmed, measured and followed up, using the same kind of tools found in the professional game.",
+    tools: [
+      {
+        name: "FullTrack AI",
+        title: "Every ball filmed and measured",
+        body: "Sessions are filmed on FullTrack AI, which cuts the video ball by ball automatically and measures speed, line, length, swing and spin. You see exactly where each ball pitched and what you did with it, and you can share any session with a tap.",
+      },
+      {
+        name: "Str8bat",
+        title: "Bat-tracking analytics",
+        body: "A small sensor on the back of your bat records bat speed, impact speed, back-lift, timing and where the ball met the bat, for every shot, with no camera needed. Ideal for the Power Hitting Programme: watch your bat speed climb session by session.",
+      },
+      {
+        name: "GoFathom",
+        title: "Feedback that lasts beyond the session",
+        body: "After each session, your coach's notes, voice memos and video land in your own player timeline in the GoFathom app. Players and parents can look back at what was worked on and what to practise next, and add their own reflections.",
+      },
+    ],
+  },
+
   coaches: [
     {
       name: "Oli Hairs",
