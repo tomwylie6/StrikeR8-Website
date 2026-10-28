@@ -16,9 +16,10 @@ export const site = {
   name: "Strike Rate Cricket Coaching",
   shortName: "Strike Rate",
   tagline: "Cricket coaching for players who want to turn good net sessions into runs and wickets on matchday.",
-  email: "[hello@strikerate.co.uk]",
-  instagram: "https://www.instagram.com/strikeratecricket",
-  tiktok: "https://www.tiktok.com/@strikeratecricket",
+  /** Empty hides it. The contact form only shows once there's an email for it to send to. */
+  email: "",
+  /** Add one line per account, e.g. { label: "Instagram", handle: "@strikerate", url: "https://www.instagram.com/strikerate" }. */
+  socials: [] as { label: string; handle: string; url: string }[],
 
   hero: {
     eyebrow: "Strike Rate Cricket Coaching",
@@ -83,7 +84,7 @@ export const site = {
       role: "Founder & Head Coach",
       specialisms: "Batting, power hitting, opening the innings",
       /** Put the photo in public/coaches/ and set this to e.g. "/coaches/oli-hairs.jpg". */
-      photo: "",
+      photo: "/coaches/oli-hairs.jpg",
       bio: [
         "Oli is a left-handed opening batter who has represented Scotland since making his ODI debut against the Netherlands in 2010.",
         "He was part of Scotland's squad at the 2024 ICC Men's T20 World Cup, hit an unbeaten 127 against Italy in T20 World Cup qualifying and set a Scottish record with 255 for Scotland A against Oman.",

@@ -107,9 +107,9 @@ export default function Home() {
                 key={c.name}
                 className="grid overflow-hidden rounded-3xl border border-border bg-surface lg:grid-cols-2"
               >
-                <div className="relative grid aspect-[4/3] place-items-center bg-bg">
+                <div className="relative grid aspect-[4/3] place-items-center bg-bg lg:aspect-auto lg:min-h-full">
                   {c.photo ? (
-                    <Image src={c.photo} alt={c.name} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+                    <Image src={c.photo} alt={c.name} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover object-[50%_25%]" />
                   ) : (
                     // Logo stands in until there's a real photo.
                     <Logo variant="mark" className="h-28 w-28 opacity-60" />
@@ -165,28 +165,37 @@ export default function Home() {
             <div>
               <SectionHeading eyebrow="Contact us" title={site.contact.heading} intro={site.contact.intro} />
               <ul className="space-y-3 text-lg">
-                <li>
-                  <span className="text-muted">Email: </span>
-                  <a href={`mailto:${site.email}`} className="underline decoration-accent-via underline-offset-4">
-                    {site.email}
-                  </a>
-                </li>
-                <li>
-                  <span className="text-muted">Instagram: </span>
-                  <a href={site.instagram} className="underline decoration-accent-via underline-offset-4">
-                    @strikeratecricket
-                  </a>
-                </li>
-                <li>
-                  <span className="text-muted">TikTok: </span>
-                  <a href={site.tiktok} className="underline decoration-accent-via underline-offset-4">
-                    @strikeratecricket
-                  </a>
-                </li>
+                {site.email && (
+                  <li>
+                    <span className="text-muted">Email: </span>
+                    <a href={`mailto:${site.email}`} className="underline decoration-accent-via underline-offset-4">
+                      {site.email}
+                    </a>
+                  </li>
+                )}
+                {site.socials.map((s) => (
+                  <li key={s.url}>
+                    <span className="text-muted">{s.label}: </span>
+                    <a href={s.url} className="underline decoration-accent-via underline-offset-4">
+                      {s.handle}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
-              <ContactForm />
+              {site.email ? (
+                <ContactForm />
+              ) : (
+                <div className="flex h-full flex-col justify-center">
+                  <h3 className="text-2xl font-bold">Contact details coming soon</h3>
+                  <p className="mt-3 text-muted">
+                    Our email and social links are on their way. In the meantime, the quickest way to get started is to
+                    book a session.
+                  </p>
+                  <BookButton className="mt-6 self-start" />
+                </div>
+              )}
             </div>
           </div>
         </section>
