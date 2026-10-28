@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
+/* Strike Rate's colours, taken from the neon-ring logo. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #141414;
+  --color-surface: #1c1c1c;
+  --color-text: #ededed;
+  --color-muted: #a3a3a3;
+  --color-border: #2e2e2e;
+  --color-accent-from: #35d6f6;
+  --color-accent-via: #8270de;
+  --color-accent-to: #e926c6;
+  --color-on-accent: #0d0d0d;
+  --accent-gradient: linear-gradient(
+    90deg,
+    var(--color-accent-from),
+    var(--color-accent-via),
+    var(--color-accent-to)
+  );
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-accent-from: var(--color-accent-from);
+  --color-accent-via: var(--color-accent-via);
+  --color-accent-to: var(--color-accent-to);
+  --color-on-accent: var(--color-on-accent);
+  --font-heading: var(--font-saira), "Arial Narrow", sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    /* Keep anchors clear of the sticky header. */
+    scroll-padding-top: 5rem;
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent-from);
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility text-gradient {
+  background-image: var(--accent-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-accent {
+  background-image: var(--accent-gradient);
+}
+
+/* Gradient border via padding-box/border-box double background. */
+@utility border-gradient {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+    var(--accent-gradient) border-box;
+}
+
+@utility glow {
+  box-shadow:
+    0 0 18px color-mix(in oklab, var(--color-accent-via) 40%, transparent),
+    0 0 4px color-mix(in oklab, var(--color-accent-from) 35%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  .motion-lift {
+    transition:
+      box-shadow 200ms ease,
+      transform 200ms ease;
+  }
+  .motion-lift:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 26px color-mix(in oklab, var(--color-accent-to) 45%, transparent),
+      0 0 6px color-mix(in oklab, var(--color-accent-from) 45%, transparent);
+  }
+  .ring-pulse {
+    animation: ring-pulse 4s ease-in-out infinite;
+  }
+}
+
+@keyframes ring-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 10px color-mix(in oklab, var(--color-accent-via) 45%, transparent));
+  }
+  50% {
+    filter: drop-shadow(0 0 26px color-mix(in oklab, var(--color-accent-to) 55%, transparent));
+  }
 }
