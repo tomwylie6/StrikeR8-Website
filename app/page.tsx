@@ -1,8 +1,9 @@
+import Image from "next/image";
 import { BookButton } from "@/components/BookButton";
 import { ContactForm } from "@/components/ContactForm";
 import { Header } from "@/components/Header";
 import { Logo } from "@/components/Logo";
-import { nav, site } from "@/lib/site";
+import { MEMBERSHIP_URL, nav, site } from "@/lib/site";
 
 function SectionHeading({ eyebrow, title, intro }: { eyebrow: string; title: string; intro?: string }) {
   return (
@@ -100,18 +101,29 @@ export default function Home() {
         {/* Coaches */}
         <section id="coaches" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 md:py-28">
           <SectionHeading eyebrow="Meet the coaches" title="Who you'll be working with" />
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6">
             {site.coaches.map((c) => (
-              <article key={c.name} className="overflow-hidden rounded-3xl border border-border bg-surface">
-                {/* Photo placeholder until there's a real picture. */}
-                <div className="grid aspect-[4/3] place-items-center bg-bg">
-                  <Logo variant="mark" className="h-24 w-24 opacity-60" />
+              <article
+                key={c.name}
+                className="grid overflow-hidden rounded-3xl border border-border bg-surface lg:grid-cols-2"
+              >
+                <div className="relative grid aspect-[4/3] place-items-center bg-bg">
+                  {c.photo ? (
+                    <Image src={c.photo} alt={c.name} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+                  ) : (
+                    // Logo stands in until there's a real photo.
+                    <Logo variant="mark" className="h-28 w-28 opacity-60" />
+                  )}
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold">{c.name}</h3>
+                <div className="p-6 sm:p-8">
+                  <h3 className="text-3xl font-bold">{c.name}</h3>
                   <p className="text-gradient mt-1 text-sm font-semibold uppercase tracking-wider">{c.role}</p>
                   <p className="mt-1 text-sm text-muted">{c.specialisms}</p>
-                  <p className="mt-4 text-muted">{c.bio}</p>
+                  <div className="mt-4 space-y-3 text-muted">
+                    {c.bio.map((p) => (
+                      <p key={p}>{p}</p>
+                    ))}
+                  </div>
                   <BookButton variant="outline" className="mt-6 !px-5 !py-2 !text-sm">
                     Book with {c.name.split(" ")[0]}
                   </BookButton>
@@ -121,7 +133,22 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Membership */}
+        <section id="membership" className="border-y border-border bg-surface">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-20 sm:px-6 md:grid-cols-[1fr_auto] md:py-24">
+            <div className="max-w-2xl">
+              <p className="text-gradient mb-3 text-sm font-semibold uppercase tracking-[0.2em]">Membership</p>
+              <h2 className="text-4xl font-bold sm:text-5xl">{site.membership.heading}</h2>
+              <p className="mt-4 text-lg text-muted">{site.membership.body}</p>
+            </div>
+            <BookButton href={MEMBERSHIP_URL} className="justify-self-start md:justify-self-end">
+              {site.membership.cta}
+            </BookButton>
+          </div>
+        </section>
+
         {/* Closing call to action */}
+        <div className="h-20 md:h-28" aria-hidden="true" />
         <section className="px-4 sm:px-6">
           <div className="border-gradient mx-auto max-w-6xl rounded-3xl px-6 py-16 text-center">
             <h2 className="text-4xl font-bold sm:text-5xl">

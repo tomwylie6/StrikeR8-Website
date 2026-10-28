@@ -9,6 +9,9 @@
  */
 export const BOOKING_URL = "";
 
+/** Where "Become a member" goes. Also Pembee; empty until it's set up, same as BOOKING_URL. */
+export const MEMBERSHIP_URL = "";
+
 export const site = {
   name: "Strike Rate Cricket Coaching",
   shortName: "Strike Rate",
@@ -34,19 +37,19 @@ export const site = {
 
   programmes: [
     {
-      title: "1-to-1 Coaching",
-      body: "Individual sessions built entirely around your goals, whether that's sorting a technical flaw or getting match-ready.",
-      cta: "Book 1-to-1",
+      title: "1-to-1 Sessions",
+      body: "Individual coaching built entirely around your game and your goals, whether that's fixing a technical flaw or getting match-ready.",
+      cta: "Book a 1-to-1",
     },
     {
-      title: "Small Group Sessions",
-      body: "Coaching in small groups focused on a single skill, with plenty of balls faced or bowled and personal feedback.",
-      cta: "View sessions",
+      title: "Power Hitting Programme",
+      body: "Clear the ropes more often. Base, bat speed, range-hitting and the decision-making behind when to go big.",
+      cta: "View programme",
     },
     {
-      title: "Junior Programmes",
-      body: "Structured blocks for junior cricketers looking to push on at club, regional or county level.",
-      cta: "View programmes",
+      title: "Bowl Faster Programme",
+      body: "Add pace safely. Run-up rhythm, a repeatable action and the strength and movement work that turns effort into speed.",
+      cta: "View programme",
     },
     {
       title: "Video Analysis",
@@ -76,12 +79,24 @@ export const site = {
 
   coaches: [
     {
-      name: "[Coach name]",
-      role: "Head Coach, Strike Rate",
-      specialisms: "[Batting, pace bowling, wicket-keeping]",
-      bio: "[A few lines about the coach: playing background, coaching experience and qualifications.]",
+      name: "Oli Hairs",
+      role: "Founder & Head Coach",
+      specialisms: "Batting, power hitting, opening the innings",
+      /** Put the photo in public/coaches/ and set this to e.g. "/coaches/oli-hairs.jpg". */
+      photo: "",
+      bio: [
+        "Oli is a left-handed opening batter who has represented Scotland since making his ODI debut against the Netherlands in 2010.",
+        "He was part of Scotland's squad at the 2024 ICC Men's T20 World Cup, hit an unbeaten 127 against Italy in T20 World Cup qualifying and set a Scottish record with 255 for Scotland A against Oman.",
+        "Strike Rate brings that experience from the top of the order to players who want to score faster and play with more intent.",
+      ],
     },
   ],
+
+  membership: {
+    heading: "Become a member",
+    body: "Get more from Strike Rate between sessions. Join through our booking partner and you'll be sent your member access code straight away.",
+    cta: "Become a member",
+  },
 
   contact: {
     heading: "Get in touch",
@@ -93,5 +108,6 @@ export const nav = [
   { label: "Our Programmes", href: "#programmes" },
   { label: "Why Strike Rate", href: "#why" },
   { label: "Meet the Coaches", href: "#coaches" },
+  { label: "Membership", href: "#membership" },
   { label: "Contact Us", href: "#contact" },
 ];
